@@ -1,5 +1,6 @@
 import { InscriptionCommand, InscriptionCommandValidation } from "@/utils";
 import axios from "axios";
+
 export const dynamic = "force-dynamic";
 
 const notion = (data: InscriptionCommand) => {

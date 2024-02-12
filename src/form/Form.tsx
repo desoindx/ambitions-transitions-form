@@ -42,7 +42,6 @@ const Form = () => {
     setErrors(null);
 
     const body = InscriptionCommandValidation.safeParse(data);
-    console.log(body);
     if (body.success) {
       try {
         await axios.post("/api/inscription", body.data);
