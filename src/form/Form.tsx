@@ -100,7 +100,7 @@ const Form = () => {
         id="checked"
         checked={checked}
         setChecked={setChecked}
-        label="J'accepte de recevoir des emails de la part d'ambitions transitions"
+        label="J'accepte de recevoir des emails de la part d'Ambitions Transitions"
         disabled={sending}
         errors={errors}
       />
