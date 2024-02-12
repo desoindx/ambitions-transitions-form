@@ -5,6 +5,7 @@ import Input from "./Input";
 import axios from "axios";
 import { ZodError } from "zod";
 import { InscriptionCommandValidation } from "@/utils";
+import styles from "./Form.module.css";
 
 const Form = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ const Form = () => {
       setSent(true);
     } else {
       const input = document.getElementById(
-        `input-${body.error.issues[0].path[0]}`,
+        `input-${body.error.issues[0].path[0]}`
       );
       if (input) {
         input.scrollIntoView({ behavior: "smooth" });
@@ -43,7 +44,7 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} noValidate>
+    <form className={styles.form} onSubmit={onSubmit} noValidate>
       <Input
         label="Email"
         type="email"
@@ -51,8 +52,11 @@ const Form = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         errors={errors}
+        required
       />
-      <button type="submit">Send</button>
+      <button className={styles.button} type="submit">
+        S'inscrire
+      </button>
     </form>
   );
 };

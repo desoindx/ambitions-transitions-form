@@ -6,7 +6,7 @@
 }
 
 .label {
-  color: var(--neutral-80);
+  color: #248e9c;
   display: inline-block;
   font-weight: 500;
   margin-bottom: 0.5rem;
@@ -25,37 +25,33 @@
 
 .input {
   align-items: center;
-  background: var(--neutral-10);
   border: unset;
-  border-bottom: 2px solid var(--neutral-60);
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
-  color: var(--neutral-70);
+  color: #248e9c;
   display: flex;
   gap: 0.5rem;
   min-width: 7.5rem;
   padding: 0.5rem 1rem;
   position: relative;
   width: 100%;
+  border-radius: 0px;
+  border-width: 1px;
+  border-color: #248e9c;
+  border-style: solid;
+  max-width: 250px;
+  width: 100%;
 
   &:hover {
-    border-bottom: 2px solid var(--primary-50);
+    border-color: #16555e;
   }
 
-  &:focus {
-    outline: 3px solid var(--primary-40);
-    outline-offset: 2px;
-  }
-
-  &:disabled {
-    background: var(--neutral-10);
-    border-bottom: 2px solid var(--neutral-20);
-    color: var(--neutral-30);
+  &:focus-visible {
+    outline: 1px solid #248e9c;
   }
 }
 
 .error {
   align-items: center;
-  color: var(--critical-50);
+  color: #b31800;
   display: flex;
   gap: 0.25rem;
   margin-top: 0.5rem;
