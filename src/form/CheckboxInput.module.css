@@ -1,0 +1,66 @@
+.container {
+  margin-top: 1rem;
+  color: var(--primary);
+  position: relative;
+  text-align: left;
+}
+
+.label {
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+
+  input {
+    -webkit-appearance: none;
+    appearance: none;
+
+    flex-shrink: 0;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    margin: 0;
+    cursor: pointer;
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+
+  input:checked {
+    background-color: var(--primary);
+  }
+
+  &:hover {
+    input {
+      outline: 1px solid var(--primary-dark);
+    }
+
+    input:checked {
+      background-color: var(--primary-dark);
+    }
+  }
+
+  input:focus {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  input:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.check {
+  color: white;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+.error {
+  align-items: center;
+  color: var(--error);
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}

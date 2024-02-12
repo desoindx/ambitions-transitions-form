@@ -54,7 +54,7 @@ export async function POST(request: Request) {
   }
 
   // await notion(inputs.data);
-  await brevo(inputs.data);
+  // await brevo(inputs.data);
 
   return Response.json({ success: true });
 }

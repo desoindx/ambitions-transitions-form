@@ -6,27 +6,27 @@
 }
 
 .label {
-  color: #248e9c;
+  color: var(--primary);
   display: inline-block;
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
 .hint {
-  color: var(--neutral-60);
+  color: var(--primary-light);
   font-size: 0.75rem;
   font-weight: 400;
 }
 
 .notRequired {
-  color: var(--neutral-50);
+  color: var(--primary-light);
   font-weight: 400;
 }
 
 .input {
   align-items: center;
   border: unset;
-  color: #248e9c;
+  color: var(--primary);
   display: flex;
   gap: 0.5rem;
   min-width: 7.5rem;
@@ -35,23 +35,22 @@
   width: 100%;
   border-radius: 0px;
   border-width: 1px;
-  border-color: #248e9c;
+  border-color: var(--primary);
   border-style: solid;
-  max-width: 250px;
   width: 100%;
 
   &:hover {
-    border-color: #16555e;
+    border-color: var(--primary-dark);
   }
 
   &:focus-visible {
-    outline: 1px solid #248e9c;
+    outline: 1px solid var(--primary-dark);
   }
 }
 
 .error {
   align-items: center;
-  color: #b31800;
+  color: var(--error);
   display: flex;
   gap: 0.25rem;
   margin-top: 0.5rem;

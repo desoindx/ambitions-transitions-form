@@ -1,5 +1,6 @@
 .form {
   padding: 1rem;
+  max-width: 350px;
 }
 
 .button {
@@ -7,24 +8,46 @@
 
   color: white;
   cursor: pointer;
-  background: #248e9c;
+  background: var(--primary);
   padding: 0.5rem 1rem;
   border-radius: 0px;
   border-width: 1px;
-  border-color: #248e9c;
+  border-color: var(--primary);
   border-style: solid;
   font-size: 1.25rem;
 
   &:hover {
-    background: #16555e;
+    background-color: var(--primary-dark);
   }
 
   &:focus-visible {
-    outline: 3px solid #248e9c;
+    outline: 3px solid var(--primary);
     outline-offset: 2px;
   }
 
   &:focus:not(:focus-visible) {
     outline: none;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: solid 1px #eae5e8;
+    color: #d5cdd2;
+    background-color: #eae5e8;
+  }
+}
+
+.result {
+  padding: 1rem;
+  max-width: 350px;
+  color: var(--primary);
+
+  svg {
+    color: var(--success);
+  }
+}
+
+.resultTitle {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
 }
