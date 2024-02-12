@@ -1,6 +1,10 @@
 .form {
   padding: 1rem;
-  max-width: 350px;
+
+  label,
+  input {
+    max-width: 350px;
+  }
 }
 
 .button {
@@ -39,7 +43,6 @@
 
 .result {
   padding: 1rem;
-  max-width: 350px;
   color: var(--primary);
 
   svg {
