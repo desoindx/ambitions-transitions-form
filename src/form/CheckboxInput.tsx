@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, ReactNode } from "react";
-import styles from "./CheckboxInput.module.css";
+import styles from "./RadioCheckboxInput.module.css";
 import useError from "./errors";
 import { ZodError } from "zod";
 const CheckboxInput = ({

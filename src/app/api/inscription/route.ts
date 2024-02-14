@@ -24,7 +24,7 @@ const notion = (data: InscriptionCommand) => {
           Authorization: `Bearer ${process.env.NOTION_API_KEY}`,
           "Notion-Version": "2022-06-28",
         },
-      }
+      },
     );
   } catch (e) {
     console.error("Erreur notion -----------", e);
@@ -46,7 +46,7 @@ const brevo = (data: InscriptionCommand) => {
           "Content-Type": "application/json",
           "api-key": process.env.BREVO_API_KEY,
         },
-      }
+      },
     );
   } catch (e) {
     console.error("Erreur brevo -----------", e);

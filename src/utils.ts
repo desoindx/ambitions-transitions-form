@@ -9,6 +9,10 @@ export const InscriptionCommandValidation = z.object({
       message: "Veuillez accepter les conditions.",
     }),
   }),
+  user: z.string().optional(),
+  experience: z.string().optional(),
+  objectives: z.array(z.string()).optional(),
+  subjects: z.array(z.string()).optional(),
 });
 
 export type InscriptionCommand = z.infer<typeof InscriptionCommandValidation>;

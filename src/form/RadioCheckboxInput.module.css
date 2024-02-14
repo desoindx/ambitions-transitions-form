@@ -1,10 +1,10 @@
 .container {
-  margin-top: 1rem;
   color: var(--primary);
   position: relative;
   text-align: left;
 }
 
+.radioLabel,
 .label {
   cursor: pointer;
   align-items: center;
@@ -20,8 +20,8 @@
     border-radius: 4px;
     margin: 0;
     cursor: pointer;
-    height: 1.75rem;
-    width: 1.75rem;
+    height: 1.25rem;
+    width: 1.25rem;
   }
 
   input:checked {
@@ -48,9 +48,15 @@
   }
 }
 
+.radioLabel {
+  input {
+    border-radius: 50%;
+  }
+}
+
 .check {
   color: white;
-  left: 0.5rem;
+  left: 0.25rem;
   top: 50%;
   transform: translateY(-50%);
   position: absolute;

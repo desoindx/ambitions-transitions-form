@@ -1,0 +1,32 @@
+.legend {
+  color: var(--primary);
+  display: inline-block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.hint {
+  color: var(--primary-light);
+  font-weight: 400;
+}
+
+.notRequired {
+  color: var(--primary-light);
+  font-weight: 400;
+}
+
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.5rem 1rem;
+}
+
+.error {
+  align-items: center;
+  color: var(--error);
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}

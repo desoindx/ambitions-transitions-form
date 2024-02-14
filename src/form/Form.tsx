@@ -7,9 +7,16 @@ import { ZodError } from "zod";
 import { InscriptionCommandValidation } from "@/utils";
 import styles from "./Form.module.css";
 import CheckboxInput from "./CheckboxInput";
+import Radio from "./Radio";
+import RadioInput from "./RadioInput";
+import Checkbox from "./Checkbox";
 
 const Form = () => {
   const [email, setEmail] = useState("");
+  const [user, setUser] = useState("");
+  const [experience, setExperience] = useState("");
+  const [objectives, setObjectives] = useState<string[]>([]);
+  const [subjects, setSubjects] = useState<string[]>([]);
   const [checked, setChecked] = useState(false);
 
   const [errors, setErrors] = useState<ZodError | null>();
@@ -21,6 +28,10 @@ const Form = () => {
     const data = {
       email,
       checked,
+      user,
+      objectives,
+      subjects,
+      experience,
     };
     if (errors) {
       const body = InscriptionCommandValidation.safeParse(data);
@@ -33,7 +44,7 @@ const Form = () => {
     return data;
     // errors is not needed and cause an infinite refresh !
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, checked]);
+  }, [email, checked, user, objectives, subjects, experience]);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,7 +62,7 @@ const Form = () => {
       setSent(true);
     } else {
       const input = document.getElementById(
-        `input-${body.error.issues[0].path[0]}`
+        `input-${body.error.issues[0].path[0]}`,
       );
       if (input) {
         input.scrollIntoView({ behavior: "smooth" });
@@ -86,7 +97,7 @@ const Form = () => {
   ) : (
     <form className={styles.form} onSubmit={onSubmit} noValidate>
       <Input
-        label="Email"
+        label="Email :"
         type="email"
         id="email"
         value={email}
@@ -95,14 +106,250 @@ const Form = () => {
         disabled={sending}
         required
       />
-      <CheckboxInput
-        id="checked"
-        checked={checked}
-        setChecked={setChecked}
-        label="J'accepte de recevoir des emails de la part d'Ambitions Transitions"
-        disabled={sending}
+      <div className={styles.message}>
+        Si tu veux nous aider, dis-nous en un petit peu plus sur toi.
+        C&lsquo;est facultatif mais ça nous aidera à affiner le programme !
+      </div>
+      <Radio id="user" label="Je suis :" errors={errors}>
+        <RadioInput
+          name="user"
+          label="Etudiant·e"
+          value="Etudiant·e"
+          selected={user}
+          setSelected={setUser}
+          disabled={sending}
+        />
+        <RadioInput
+          name="user"
+          label="Salarié·e ou à mon compte"
+          value="Salarié·e ou à mon compte"
+          selected={user}
+          setSelected={setUser}
+          disabled={sending}
+        />
+        <RadioInput
+          name="user"
+          label="En reconversion professionnelle"
+          value="En reconversion professionnelle"
+          selected={user}
+          setSelected={setUser}
+          disabled={sending}
+        />
+        <RadioInput
+          name="user"
+          label="Sans activité professionnelle"
+          value="Sans activité professionnelle"
+          selected={user}
+          setSelected={setUser}
+          disabled={sending}
+        />
+        <RadioInput
+          name="user"
+          label="Autre"
+          value="Autre"
+          selected={user}
+          setSelected={setUser}
+          disabled={sending}
+        />
+      </Radio>
+      <br />
+      <Checkbox id="objectives" label="Je viens au Forum pour :">
+        <CheckboxInput
+          id="Trouver un métier engagé"
+          checked={objectives.includes("Trouver un métier engagé")}
+          setChecked={(checked) => {
+            if (checked) {
+              setObjectives([...objectives, "Trouver un métier engagé"]);
+            } else {
+              setObjectives(
+                objectives.filter(
+                  (objective) => objective !== "Trouver un métier engagé",
+                ),
+              );
+            }
+          }}
+          label="Trouver un métier engagé"
+          disabled={sending}
+        />
+        <CheckboxInput
+          id="Chercher des pistes pour ma reconversion, mon orientation, mon engagement"
+          checked={objectives.includes(
+            "Chercher des pistes pour ma reconversion, mon orientation, mon engagement",
+          )}
+          setChecked={(checked) => {
+            if (checked) {
+              setObjectives([
+                ...objectives,
+                "Chercher des pistes pour ma reconversion, mon orientation, mon engagement",
+              ]);
+            } else {
+              setObjectives(
+                objectives.filter(
+                  (objective) =>
+                    objective !==
+                    "Chercher des pistes pour ma reconversion, mon orientation, mon engagement",
+                ),
+              );
+            }
+          }}
+          label="Chercher des pistes pour ma reconversion, mon orientation, mon engagement"
+          disabled={sending}
+        />
+        <CheckboxInput
+          id="Rencontrer l'écosystème à impact"
+          checked={objectives.includes("Rencontrer l'écosystème à impact")}
+          setChecked={(checked) => {
+            if (checked) {
+              setObjectives([
+                ...objectives,
+                "Rencontrer l'écosystème à impact",
+              ]);
+            } else {
+              setObjectives(
+                objectives.filter(
+                  (objective) =>
+                    objective !== "Rencontrer l'écosystème à impact",
+                ),
+              );
+            }
+          }}
+          label="Rencontrer l'écosystème à impact"
+          disabled={sending}
+        />
+        <CheckboxInput
+          id="M'inspirer et apprendre"
+          checked={objectives.includes("M'inspirer et apprendre")}
+          setChecked={(checked) => {
+            if (checked) {
+              setObjectives([...objectives, "M'inspirer et apprendre"]);
+            } else {
+              setObjectives(
+                objectives.filter(
+                  (objective) => objective !== "M'inspirer et apprendre",
+                ),
+              );
+            }
+          }}
+          label="M'inspirer et apprendre"
+          disabled={sending}
+        />
+      </Checkbox>
+      <br />
+      <Checkbox id="subjects" label="Les sujets qui m'interessent :">
+        <CheckboxInput
+          id="Sensibilisation et transition environnementale"
+          checked={subjects.includes(
+            "Sensibilisation et transition environnementale",
+          )}
+          setChecked={(checked) => {
+            if (checked) {
+              setSubjects([
+                ...subjects,
+                "Sensibilisation et transition environnementale",
+              ]);
+            } else {
+              setSubjects(
+                subjects.filter(
+                  (subject) =>
+                    subject !==
+                    "Sensibilisation et transition environnementale",
+                ),
+              );
+            }
+          }}
+          label="Sensibilisation et transition environnementale"
+          disabled={sending}
+        />
+        <CheckboxInput
+          id="Les nouveaux imaginaires liés au travail"
+          checked={subjects.includes("Engagement et solidarité")}
+          setChecked={(checked) => {
+            if (checked) {
+              setSubjects([...subjects, "Engagement et solidarité"]);
+            } else {
+              setSubjects(
+                subjects.filter(
+                  (subject) => subject !== "Engagement et solidarité",
+                ),
+              );
+            }
+          }}
+          label="Engagement et solidarité"
+          disabled={sending}
+        />
+        <CheckboxInput
+          id="Les nouveaux imaginaires liés au travail"
+          checked={subjects.includes(
+            "Les nouveaux imaginaires liés au travail",
+          )}
+          setChecked={(checked) => {
+            if (checked) {
+              setSubjects([
+                ...subjects,
+                "Les nouveaux imaginaires liés au travail",
+              ]);
+            } else {
+              setSubjects(
+                subjects.filter(
+                  (subject) =>
+                    subject !== "Les nouveaux imaginaires liés au travail",
+                ),
+              );
+            }
+          }}
+          label="Les nouveaux imaginaires liés au travail"
+          disabled={sending}
+        />
+      </Checkbox>
+      <br />
+      <Radio
+        id="experience"
+        label="Mon expérience professionnelle :"
         errors={errors}
-      />
+      >
+        <RadioInput
+          name="experience"
+          label="Je suis en stage, alternance, encore étudiant·e"
+          value="Je suis en stage, alternance, encore étudiant·e"
+          selected={experience}
+          setSelected={setExperience}
+          disabled={sending}
+        />
+        <RadioInput
+          name="experience"
+          label="J'ai entre 0 et 5 ans d'expérience pro"
+          value="J'ai entre 0 et 5 ans d'expérience pro"
+          selected={experience}
+          setSelected={setExperience}
+          disabled={sending}
+        />
+        <RadioInput
+          name="experience"
+          label="J'ai entre 5 et 10 ans d'expérience pro"
+          value="J'ai entre 5 et 10 ans d'expérience pro"
+          selected={experience}
+          setSelected={setExperience}
+          disabled={sending}
+        />
+        <RadioInput
+          name="experience"
+          label="J'ai plus de 10 ans d'expérience pro"
+          value="J'ai plus de 10 ans d'expérience pro"
+          selected={experience}
+          setSelected={setExperience}
+          disabled={sending}
+        />
+      </Radio>
+      <div className={styles.accept}>
+        <CheckboxInput
+          id="checked"
+          checked={checked}
+          setChecked={setChecked}
+          label="J'accepte de recevoir des emails de la part d'Ambitions Transitions"
+          disabled={sending}
+          errors={errors}
+        />
+      </div>
       <button disabled={sending} className={styles.button} type="submit">
         S&lsquo;inscrire
       </button>

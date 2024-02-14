@@ -1,7 +1,6 @@
 .form {
   padding: 1rem;
 
-  label,
   input {
     max-width: 350px;
   }
@@ -53,4 +52,14 @@
 .resultTitle {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
+}
+
+.message {
+  color: var(--primary);
+  margin: 2rem 0 1rem 0;
+  font-size: 1.25rem;
+}
+
+.accept {
+  margin-top: 2rem;
 }
