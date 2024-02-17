@@ -51,23 +51,39 @@ const notion = (data: InscriptionCommand) => {
   }
 };
 
-const brevo = (data: InscriptionCommand) => {
+const brevo = async (data: InscriptionCommand) => {
   try {
-    return axios.post(
-      "https://api.brevo.com/v3/contacts",
-      {
-        email: data.email,
-        listIds: [Number(process.env.BREVO_LIST_ID)],
-        updateEnabled: false,
-      },
-      {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "api-key": process.env.BREVO_API_KEY,
+    return axios
+      .post(
+        "https://api.brevo.com/v3/contacts",
+        {
+          email: data.email,
+          listIds: [Number(process.env.BREVO_LIST_ID)],
+          updateEnabled: false,
         },
-      }
-    );
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "api-key": process.env.BREVO_API_KEY,
+          },
+        }
+      )
+      .catch(() => {
+        return axios.post(
+          `https://api.brevo.com/v3/contacts/lists/${process.env.BREVO_LIST_ID}/contacts/add`,
+          {
+            emails: [data.email],
+          },
+          {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "api-key": process.env.BREVO_API_KEY,
+            },
+          }
+        );
+      });
   } catch (e) {
     console.error("Erreur brevo -----------", e);
   }
