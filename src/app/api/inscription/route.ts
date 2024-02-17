@@ -17,6 +17,26 @@ const notion = (data: InscriptionCommand) => {
             type: "title",
             title: [{ type: "text", text: { content: data.email } }],
           },
+          "Situation professionnelle": {
+            type: "rich_text",
+            rich_text: [{ text: { content: data.user || "NC" } }],
+          },
+          "Visite au Forum": {
+            type: "rich_text",
+            rich_text: [
+              { text: { content: data.objectives?.join(", ") || "NC" } },
+            ],
+          },
+          Intérêts: {
+            type: "rich_text",
+            rich_text: [
+              { text: { content: data.subjects?.join(", ") || "NC" } },
+            ],
+          },
+          "Expérience professionnelle": {
+            type: "rich_text",
+            rich_text: [{ text: { content: data.experience || "NC" } }],
+          },
         },
       },
       {
@@ -24,7 +44,7 @@ const notion = (data: InscriptionCommand) => {
           Authorization: `Bearer ${process.env.NOTION_API_KEY}`,
           "Notion-Version": "2022-06-28",
         },
-      },
+      }
     );
   } catch (e) {
     console.error("Erreur notion -----------", e);
@@ -46,7 +66,7 @@ const brevo = (data: InscriptionCommand) => {
           "Content-Type": "application/json",
           "api-key": process.env.BREVO_API_KEY,
         },
-      },
+      }
     );
   } catch (e) {
     console.error("Erreur brevo -----------", e);
