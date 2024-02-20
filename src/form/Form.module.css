@@ -41,8 +41,8 @@
 }
 
 .result {
-  padding: 1rem;
-  color: var(--primary);
+  margin-top: 1rem;
+  color: #004a54;
 
   svg {
     color: var(--success);
